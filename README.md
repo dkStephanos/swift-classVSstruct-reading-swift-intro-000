@@ -44,9 +44,13 @@ fred.weight = 999.2
 fred.homePlanet = "Mars"
 ```
 
+The first two lines will work, because 'fred' is a reference variable, meaning that its contents can be mutated.
+The variable homePlanet, however, is declard as a constant inside the Giant class, therefore, it can not be mutated.
+
 ### Question 2
 
 Can you fix the class definition above so that it _does_ work?
+You would just have to change homePlanet to a variable.
 
 ### Question 3
 
@@ -74,9 +78,16 @@ bilbo.height = 1.42
 bilbo.homePlanet = "Saturn"
 ```
 
+No, because Alien is a stuct, which is value based, which means that alterations to the contents of an instance of the Alien
+struct are alterations to the struct itself. The Alien, 'bilbo' is delcared as a constant, therefore neither it nor its contents may be
+edited.
+
+
 ### Question 4
 
 Can you change the declaration of `bilbo` so that the above three lines of code _do_ work?
+
+Yes, change it to a variable.
 
 ### Question 5
 
@@ -90,6 +101,10 @@ jason.name = "Jason"
 
 What will the value of `edgar.name` be after those three lines of code are run? What will the value of `jason.name` be? Why?
 
+It will be 'Jason', becuase the variable jason is a reference variable set equal to edgar. So the contents of edgar and jason are
+exactly the same, an address in memory for our created Giant. As a result, any alteration to edgar or jason is actually an
+alteration on the same instance of Giant.
+
 ### Question 6
 
 Given this bit of code that uses the `Alien` struct:
@@ -101,6 +116,9 @@ charlesFromJupiter.homePlanet = "Jupiter"
 ```
 
 What will the value of `charles.homePlanet` be after the above code run? What about the value of `charlesFromJupiter.homePlanet`? Why?
+
+The value of 'charles.homPlanet' will be 'Pluto', whereas 'charlesFromJupiter' will have a home planet of 'Jupiter'. This is
+because structs are value based, so when the variable 'charlesFrom Jupiter' is initialized with 'charles', a new structure is created with values identitical to 'charles'. As a result, any edits made to the new structure don't effect the original structure that was copied.
 
 ### Question 7
 
@@ -123,9 +141,12 @@ struct BankAccount {
 
 Does this code work? Why or why not?
 
+No, because balance was never initialized.
+
 ### Question 8
 
 Can you fix the `BankAccount` struct so it _does_ work?
+This could be remedied by adding an initializer that would set base values for owner and balance.
 
 ### Question 9
 
@@ -138,6 +159,8 @@ joeAccount.withdraw(50.0)
 ```
 
 What will the value of `joeAccount.balance` be after the above code runs? What about the value of `joeOtherAccount.balance`? Why?
+
+'JoeAccount' will have a balance of 50, while 'joeOtherAccount' will have a balance of 100. This is because the bank accounts are structures, so any changes to one account do not effect the other.
 
 ### Question 10
 
@@ -168,5 +191,7 @@ library2.add(track: "Come As You Are")
 ```
 
 After this code runs, what are the contents of `library1.tracks`? What about the contents of `library2.tracks`? Why?
+
+The contents will be the same. This is becuase classes are referential types, so when 'library2' is created, it is passed the same address as library1, so any changes made with either label actually effect the same instance of 'MusicLibrary' in memory.
 
 <a href='https://learn.co/lessons/ClassesVsStructs' data-visibility='hidden'>View this lesson on Learn.co</a>
